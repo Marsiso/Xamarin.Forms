@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	  <LangVersion>10</LangVersion>
+	  <Nullable>enable</Nullable>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
+    <PackageReference Include="PexelsDotNetSDK" Version="1.0.11" />
+    <PackageReference Include="Polly" Version="7.2.3" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Syncfusion.Licensing" Version="20.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="20.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="20.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="20.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBackdrop" Version="20.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="20.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="20.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="20.4.0.44" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="launcher_background">#FFFFFF</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#FF4081</color>
+	<drawable name="bg_color">#ffffff</drawable>
+
+	<!--set your selected item background color-->
+	<color name="ListViewSelected">#171515</color>
+</resources>

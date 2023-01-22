@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<backdrop:SfBackdropPage
+    x:Class="Discovery.Views.FavouritesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+    xmlns:backdrop="clr-namespace:Syncfusion.XForms.Backdrop;assembly=Syncfusion.SfBackdrop.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+    xmlns:local="clr-namespace:Discovery.ViewModels"
+    xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:popuplayout="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
+    xmlns:textinputlayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    Title="Favourites"
+    BackLayerRevealOption="Auto"
+    Background="Black"
+    IsBackLayerRevealed="False">
+
+    <ContentPage.BindingContext>
+        <local:FavouritesPageViewModel x:Name="favouritesPageViewModel" />
+    </ContentPage.BindingContext>
+
+    <backdrop:SfBackdropPage.BackLayer>
+        <backdrop:BackdropBackLayer BackgroundColor="Black">
+            <StackLayout>
+                <ListView
+                    ItemSelected="ListView_ItemSelected"
+                    SelectedItem="2"
+                    SelectionMode="Single">
+                    <ListView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Home</x:String>
+                            <x:String>Browse</x:String>
+                            <x:String>Favourites</x:String>
+                        </x:Array>
+                    </ListView.ItemsSource>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding .}" TextColor="White" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </backdrop:BackdropBackLayer>
+    </backdrop:SfBackdropPage.BackLayer>
+    <backdrop:SfBackdropPage.FrontLayer>
+        <backdrop:BackdropFrontLayer>
+            <Grid BackgroundColor="White" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--  Page content  -->
+                <textinputlayout:SfTextInputLayout
+                    Grid.Row="0"
+                    Padding="20,10"
+                    BackgroundColor="White"
+                    ContainerBackgroundColor="White"
+                    ErrorColor="Gray"
+                    FocusedColor="DeepPink"
+                    HeightRequest="40"
+                    HelperText="Enter photo description"
+                    Hint="Filter"
+                    HorizontalOptions="Center"
+                    LeadingViewPosition="Inside"
+                    UnfocusedColor="Black"
+                    VerticalOptions="Center">
+                    <Entry Text="{Binding SearchTerm, Mode=TwoWay}" />
+                    <textinputlayout:SfTextInputLayout.LeadingView>
+                        <Image Source="https://cdn-icons-png.flaticon.com/256/3405/3405802.png" />
+                    </textinputlayout:SfTextInputLayout.LeadingView>
+                </textinputlayout:SfTextInputLayout>
+
+
+                <popuplayout:SfPopupLayout
+                    x:Name="popupLayout"
+                    Grid.Row="1"
+                    Margin="0,30,0,0">
+                    <popuplayout:SfPopupLayout.PopupView>
+                        <popuplayout:PopupView
+                            AnimationMode="Fade"
+                            AutoSizeMode="Both"
+                            HeaderTitle="Photo"
+                            ShowFooter="False">
+                            <popuplayout:PopupView.PopupStyle>
+                                <popuplayout:PopupStyle
+                                    AcceptButtonBackgroundColor="White"
+                                    AcceptButtonTextColor="Black"
+                                    BorderColor="Transparent"
+                                    CornerRadius="16"
+                                    FooterBackgroundColor="White"
+                                    HeaderBackgroundColor="Black"
+                                    HeaderFontAttribute="Bold"
+                                    HeaderFontFamily="Helvetica-Bold"
+                                    HeaderFontSize="16"
+                                    HeaderTextAlignment="Start"
+                                    HeaderTextColor="White"
+                                    OverlayOpacity="0.8" />
+                            </popuplayout:PopupView.PopupStyle>
+                            <popuplayout:PopupView.ContentTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="45" />
+                                            <RowDefinition Height="45" />
+                                            <RowDefinition Height="45" />
+                                        </Grid.RowDefinitions>
+
+                                        <buttons:SfButton
+                                            BackgroundColor="White"
+                                            BorderWidth="0"
+                                            Clicked="SfButton_RemoveFavouriteClicked"
+                                            CornerRadius="25"
+                                            FontSize="16"
+                                            HasShadow="False"
+                                            HorizontalTextAlignment="Start"
+                                            ImageAlignment="Left"
+                                            ImageSource="https://cdn-icons-png.flaticon.com/64/1248/1248825.png"
+                                            ShowIcon="True"
+                                            Text="Remove Favourite"
+                                            TextColor="Black"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center"
+                                            WidthRequest="180" />
+
+                                        <buttons:SfButton
+                                            Grid.Row="1"
+                                            BackgroundColor="White"
+                                            BorderWidth="0"
+                                            Clicked="SfButton_RemoveFavouriteClicked"
+                                            CornerRadius="25"
+                                            FontSize="16"
+                                            HasShadow="False"
+                                            HorizontalTextAlignment="Start"
+                                            ImageAlignment="Left"
+                                            ImageSource="https://cdn-icons-png.flaticon.com/64/607/607863.png"
+                                            ShowIcon="True"
+                                            Text="Blacklist Photo"
+                                            TextColor="Black"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center"
+                                            WidthRequest="180" />
+
+                                        <buttons:SfButton
+                                            Grid.Row="2"
+                                            BackgroundColor="White"
+                                            BorderWidth="0"
+                                            Clicked="SfButton_DownloadPhotoClicked"
+                                            CornerRadius="25"
+                                            FontSize="16"
+                                            HasShadow="False"
+                                            HorizontalTextAlignment="Start"
+                                            ImageAlignment="Left"
+                                            ImageSource="https://cdn-icons-png.flaticon.com/64/54/54993.png"
+                                            ShowIcon="True"
+                                            Text="Download Photo"
+                                            TextColor="Black"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center"
+                                            WidthRequest="180" />
+                                    </Grid>
+                                </DataTemplate>
+                            </popuplayout:PopupView.ContentTemplate>
+                        </popuplayout:PopupView>
+                    </popuplayout:SfPopupLayout.PopupView>
+                    <popuplayout:SfPopupLayout.Content>
+                        <cards:SfCardLayout
+                            BackgroundColor="Transparent"
+                            BindableLayout.ItemsSource="{Binding Photos}"
+                            CardTapped="SfCardLayout_CardTapped"
+                            HorizontalOptions="FillAndExpand"
+                            SwipeDirection="Right"
+                            VerticalOptions="FillAndExpand">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <cards:SfCardView BorderColor="Transparent">
+                                        <pancakeview:PancakeView
+                                            Padding="0"
+                                            BackgroundColor="Transparent"
+                                            CornerRadius="16"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand">
+                                            <Grid>
+                                                <StackLayout BackgroundColor="Black">
+                                                    <Image
+                                                        Aspect="AspectFill"
+                                                        HeightRequest="350"
+                                                        Opacity="0.8"
+                                                        Source="{Binding Url}"
+                                                        VerticalOptions="FillAndExpand" />
+                                                </StackLayout>
+                                                <StackLayout Margin="0,0,0,10">
+                                                    <Image
+                                                        Margin="10,0"
+                                                        Aspect="AspectFit"
+                                                        HeightRequest="30"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        Source="https://images.vexels.com/media/users/3/147081/isolated/preview/8665e39f2880934120b3c37131210042-instagram-bookmark-icon-by-vexels.png" />
+                                                    <Label
+                                                        Margin="15,0"
+                                                        FontAttributes="None"
+                                                        FontSize="18"
+                                                        Text="{Binding Alt}"
+                                                        TextColor="White"
+                                                        VerticalOptions="EndAndExpand" />
+                                                    <StackLayout Margin="15,-8,0,0" Orientation="Horizontal">
+                                                        <Image
+                                                            Margin="-5,0"
+                                                            Aspect="AspectFit"
+                                                            HeightRequest="20"
+                                                            HorizontalOptions="Start"
+                                                            Source="https://cdn4.iconfinder.com/data/icons/people-avatar-filled-outline/64/girl_ponytail_people_woman_teenager_avatar_female-1024.png" />
+                                                        <Label
+                                                            FontAttributes="None"
+                                                            FontSize="16"
+                                                            Text="{Binding Photographer}"
+                                                            TextColor="White"
+                                                            VerticalOptions="EndAndExpand" />
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </Grid>
+                                        </pancakeview:PancakeView>
+                                    </cards:SfCardView>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </cards:SfCardLayout>
+                    </popuplayout:SfPopupLayout.Content>
+                </popuplayout:SfPopupLayout>
+
+            </Grid>
+        </backdrop:BackdropFrontLayer>
+    </backdrop:SfBackdropPage.FrontLayer>
+</backdrop:SfBackdropPage>
