@@ -17,20 +17,21 @@ public partial class BrowsePage : SfBackdropPage
     private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
         var app = Application.Current;
-        if (app is not null)
+
+        if (app is null) return;
+        switch (e.SelectedItem.ToString())
         {
-            if (e.SelectedItem.ToString() == "Home")
-            {
+            case "Home":
                 app.MainPage = new NavigationPage(new HomePage());
-            }
-            else if (e.SelectedItem.ToString() == "Browse")
-            {
+                break;
+
+            case "Browse":
                 app.MainPage = new NavigationPage(new BrowsePage());
-            }
-            else if (e.SelectedItem.ToString() == "Favourites")
-            {
+                break;
+
+            case "Favourites":
                 app.MainPage = new NavigationPage(new FavouritesPage());
-            }
+                break;
         }
     }
 

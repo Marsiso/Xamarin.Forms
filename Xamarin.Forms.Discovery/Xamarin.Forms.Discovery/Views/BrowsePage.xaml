@@ -120,16 +120,18 @@
                     LoadMoreCommand="{Binding LoadMoreItemsCommand}"
                     LoadMoreCommandParameter="{Binding .}"
                     LoadMoreOption="Manual">
-                    <syncfusion:SfListView.DataSource>
+                    <!--<syncfusion:SfListView.DataSource>
                         <datasource:DataSource>
                             <datasource:DataSource.SortDescriptors>
                                 <datasource:SortDescriptor Direction="Ascending" PropertyName="Photographer" />
                             </datasource:DataSource.SortDescriptors>
-                            <!--<datasource:DataSource.GroupDescriptors>
+                    -->
+                    <!--<datasource:DataSource.GroupDescriptors>
                                 <datasource:GroupDescriptor PropertyName="Photographer" />
                             </datasource:DataSource.GroupDescriptors>-->
+                    <!--
                         </datasource:DataSource>
-                    </syncfusion:SfListView.DataSource>
+                    </syncfusion:SfListView.DataSource>-->
                     <syncfusion:SfListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -140,16 +142,16 @@
                                         RowSpacing="0"
                                         VerticalOptions="FillAndExpand">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="45" />
                                             <RowDefinition Height="60" />
+                                            <RowDefinition Height="105" />
                                             <RowDefinition Height="45" />
                                             <RowDefinition Height="45" />
                                             <RowDefinition Height="45" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="auto" />
-                                            <ColumnDefinition Width="auto" />
                                             <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="45" />
+                                            <ColumnDefinition Width="135" />
                                         </Grid.ColumnDefinitions>
 
                                         <!--  Column 1  -->
@@ -161,11 +163,8 @@
                                             Padding="0"
                                             BackgroundColor="White"
                                             BorderColor="Transparent"
-                                            CornerRadius="10">
-                                            <Image
-                                                Aspect="AspectFill"
-                                                Source="{Binding Url}"
-                                                WidthRequest="160" />
+                                            CornerRadius="16">
+                                            <Image Aspect="AspectFill" Source="{Binding Url}" />
                                         </Frame>
 
                                         <!--  Column 2  -->
@@ -202,7 +201,7 @@
                                             Margin="3.5,1.5,0,0"
                                             Aspect="AspectFill"
                                             HorizontalOptions="Center"
-                                            Source="https://cdn-icons-png.flaticon.com/64/56/56889.png"
+                                            Source="https://cdn-icons-png.flaticon.com/64/1237/1237946.png"
                                             VerticalOptions="Center" />
 
                                         <Image
@@ -251,7 +250,7 @@
                                             HasShadow="False"
                                             HorizontalOptions="StartAndExpand"
                                             HorizontalTextAlignment="Start"
-                                            Text="Add to Favourites"
+                                            Text="Favourites"
                                             TextColor="Black"
                                             VerticalOptions="CenterAndExpand"
                                             VerticalTextAlignment="Center" />
@@ -268,7 +267,7 @@
                                             HasShadow="False"
                                             HorizontalOptions="StartAndExpand"
                                             HorizontalTextAlignment="Start"
-                                            Text="Add to Blacklist"
+                                            Text="Blacklist"
                                             TextColor="Black"
                                             VerticalOptions="CenterAndExpand"
                                             VerticalTextAlignment="Center" />

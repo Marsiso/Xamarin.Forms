@@ -1,12 +1,15 @@
 ﻿using Discovery.Models;
 using PexelsDotNetSDK.Models;
+using Syncfusion.DataSource.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Discovery;
 
@@ -22,7 +25,7 @@ public sealed class BrowsePageViewModel : INotifyPropertyChanged
         get => searchTerm;
         set
         {
-            if (searchTerm != value)
+            if (searchTerm != value && !string.IsNullOrEmpty(searchTerm))
             {
                 searchTerm = value;
                 _ = GetCategorizedPhotos(value);
@@ -86,10 +89,13 @@ public sealed class BrowsePageViewModel : INotifyPropertyChanged
         {
             while (temp.Count < 50)
             {
-                var photoPageTask = App.PhotoService.GetCategorizedPhotos(category: searchTerm!, pageNumber: pageNumber);
-                var photoPage = photoPageTask.Result;
-
-                if (photoPage?.photos is null || photoPage.photos.Count == 0) break;
+                var photoPage = await App.PhotoService.GetCategorizedPhotos(category: searchTerm!, pageNumber: pageNumber);
+                if (photoPage is null
+                    || photoPage.photos is null
+                    || photoPage.photos.Count == 0)
+                {
+                    break;
+                }
 
                 foreach (var photo in photoPage.photos)
                 {
@@ -122,7 +128,7 @@ public sealed class BrowsePageViewModel : INotifyPropertyChanged
         Photos = temp;
     }
 
-    private void AddToFavouritesCommandMethod(object obj)
+    private async void AddToFavouritesCommandMethod(object obj)
     {
         var photo = obj as PhotoEntity;
         if (photo is not null)
@@ -130,12 +136,12 @@ public sealed class BrowsePageViewModel : INotifyPropertyChanged
             photo.IsVisible = false;
             photo.IsFavourite = true;
             photo.IsBlackListed = false;
-            _ = App.DatabaseService.UpdatePhoto(photo);
+            await App.DatabaseService.UpdatePhoto(photo);
             Photos = Photos.Where(x => x.Id != photo.Id).ToList();
         }
     }
 
-    private void AddToBlacklistCommandMethod(object obj)
+    private async void AddToBlacklistCommandMethod(object obj)
     {
         var photo = obj as PhotoEntity;
         if (photo is not null)
@@ -143,7 +149,7 @@ public sealed class BrowsePageViewModel : INotifyPropertyChanged
             photo.IsVisible = false;
             photo.IsFavourite = false;
             photo.IsBlackListed = true;
-            _ = App.DatabaseService.UpdatePhoto(photo);
+            await App.DatabaseService.UpdatePhoto(photo);
             Photos = Photos.Where(x => x.Id != photo.Id).ToList();
         }
     }
@@ -151,7 +157,10 @@ public sealed class BrowsePageViewModel : INotifyPropertyChanged
     private void DownloadCommandMethod(object obj)
     {
         var photo = obj as PhotoEntity;
-        if (photo is not null) GetPhotoFromUrl(photo.Id.ToString(), photo.Url);
+        if (photo is not null)
+        {
+            GetPhotoFromUrl(photo.Id.ToString(), photo.Url);
+        }
     }
 
     private async void LoadMoreItemsCommandMethod(object obj) => await GetCategorizedPhotos(this.SearchTerm, PhotoPage is not null ? PhotoPage.page + 1 : 1);
@@ -167,20 +176,32 @@ public sealed class BrowsePageViewModel : INotifyPropertyChanged
         var imageBytes = webClient.DownloadData(url);
         if (imageBytes is not null && imageBytes.Length > 0)
         {
-            SavePhoto(photoName, imageBytes, "Photos");
+            SavePhoto(photoName, imageBytes);
         }
     }
 
-    private void SavePhoto(string photoName, byte[] data, string location = "temp")
+    private void SavePhoto(string photoName, byte[] data)
     {
-        /*var downloadsPath = Android.App.Application.Context.GetExternalFilesDir(string.Empty).AbsolutePath;
-        if (Path.HasExtension(photoName) is false)
+        try
         {
-            photoName += ".jpeg";
+            if (Path.HasExtension(photoName) is false)
+            {
+                photoName += ".jpeg";
+            }
+
+            var appDir = FileSystem.AppDataDirectory;
+
+            //string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            var path = Path.Combine(appDir, photoName);
+            //Directory.CreateDirectory(documentsPath);
+            //string path = Path.Combine(documentsPath, photoName);
+
+            //var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), photoName);
+
+            File.WriteAllBytes(path, data);
         }
-
-        var filePath = Path.Combine(downloadsPath, photoName);
-
-        File.WriteAllBytes(filePath, data);*/
+        catch (Exception e)
+        {
+        }
     }
 }

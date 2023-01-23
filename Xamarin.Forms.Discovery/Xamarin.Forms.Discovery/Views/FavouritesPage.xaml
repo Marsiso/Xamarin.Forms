@@ -76,7 +76,7 @@
                 <popuplayout:SfPopupLayout
                     x:Name="popupLayout"
                     Grid.Row="1"
-                    Margin="0,30,0,0">
+                    Margin="0,45,0,0">
                     <popuplayout:SfPopupLayout.PopupView>
                         <popuplayout:PopupView
                             AnimationMode="Fade"
