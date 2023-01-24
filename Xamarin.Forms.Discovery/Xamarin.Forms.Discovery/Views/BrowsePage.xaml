@@ -66,6 +66,7 @@
                     UnfocusedColor="Black"
                     VerticalOptions="Center">
                     <combobox:SfComboBox
+                        x:Name="searchTermComboBox"
                         SelectedItem="{Binding SearchTerm, Mode=TwoWay}"
                         ShowClearButton="false"
                         Text="16">
@@ -193,16 +194,16 @@
                                             Margin="0,3,0,0"
                                             Aspect="AspectFill"
                                             HorizontalOptions="Center"
-                                            Source="https://cdn-icons-png.flaticon.com/32/4746/4746884.png"
+                                            Source="https://cdn-icons-png.flaticon.com/32/9018/9018831.png"
                                             VerticalOptions="Center" />
 
                                         <Image
                                             Grid.Row="3"
                                             Grid.Column="1"
-                                            Margin="0,3,0,0"
+                                            Margin="0,1.5,0,0"
                                             Aspect="AspectFill"
                                             HorizontalOptions="Center"
-                                            Source="https://cdn-icons-png.flaticon.com/32/1237/1237946.png"
+                                            Source="https://cdn-icons-png.flaticon.com/32/8079/8079589.png"
                                             VerticalOptions="Center" />
 
                                         <Image
@@ -211,7 +212,7 @@
                                             Margin="0,3,0,0"
                                             Aspect="AspectFill"
                                             HorizontalOptions="Center"
-                                            Source="https://cdn-icons-png.flaticon.com/32/2810/2810390.png"
+                                            Source="https://cdn-icons-png.flaticon.com/32/2311/2311512.png"
                                             VerticalOptions="Center" />
 
                                         <!--  Column 3  -->

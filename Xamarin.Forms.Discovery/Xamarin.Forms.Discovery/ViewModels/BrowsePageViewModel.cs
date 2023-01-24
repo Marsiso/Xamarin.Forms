@@ -110,7 +110,7 @@ public sealed class BrowsePageViewModel : INotifyPropertyChanged
                         Alt = photo.alt,
                         Url = photo.source.portrait,
                         Photographer = photo.photographer,
-                        Category = searchTerm
+                        Category = searchTerm!
                     };
 
                     await App.DatabaseService.CreatePhoto(photoEntityToCreate);
