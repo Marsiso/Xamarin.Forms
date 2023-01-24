@@ -142,15 +142,15 @@
                                         RowSpacing="0"
                                         VerticalOptions="FillAndExpand">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="60" />
-                                            <RowDefinition Height="105" />
+                                            <RowDefinition Height="45" />
+                                            <RowDefinition Height="90" />
                                             <RowDefinition Height="45" />
                                             <RowDefinition Height="45" />
                                             <RowDefinition Height="45" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="45" />
+                                            <ColumnDefinition Width="30" />
                                             <ColumnDefinition Width="135" />
                                         </Grid.ColumnDefinitions>
 
@@ -171,66 +171,68 @@
                                         <Image
                                             Grid.Row="0"
                                             Grid.Column="1"
-                                            Margin="3.5,1.5,0,0"
+                                            Margin="0,13,0,0"
                                             Aspect="AspectFill"
+                                            HeightRequest="16"
                                             HorizontalOptions="Center"
-                                            Source="https://cdn-icons-png.flaticon.com/64/1077/1077114.png"
-                                            VerticalOptions="Center" />
+                                            Source="https://cdn-icons-png.flaticon.com/32/1077/1077114.png"
+                                            VerticalOptions="Start" />
 
                                         <Image
                                             Grid.Row="1"
                                             Grid.Column="1"
-                                            Margin="3.5,1.5,0,0"
+                                            Margin="0,3,0,0"
                                             Aspect="AspectFill"
                                             HorizontalOptions="Center"
-                                            Source="https://cdn-icons-png.flaticon.com/64/3033/3033215.png"
+                                            Source="https://cdn-icons-png.flaticon.com/32/3033/3033215.png"
                                             VerticalOptions="Start" />
 
                                         <Image
                                             Grid.Row="2"
                                             Grid.Column="1"
-                                            Margin="3.5,1.5,0,0"
+                                            Margin="0,3,0,0"
                                             Aspect="AspectFill"
                                             HorizontalOptions="Center"
-                                            Source="https://cdn-icons-png.flaticon.com/64/1237/1237946.png"
+                                            Source="https://cdn-icons-png.flaticon.com/32/4746/4746884.png"
                                             VerticalOptions="Center" />
 
                                         <Image
                                             Grid.Row="3"
                                             Grid.Column="1"
-                                            Margin="3.5,1.5,0,0"
+                                            Margin="0,3,0,0"
                                             Aspect="AspectFill"
                                             HorizontalOptions="Center"
-                                            Source="https://cdn-icons-png.flaticon.com/64/1237/1237946.png"
+                                            Source="https://cdn-icons-png.flaticon.com/32/1237/1237946.png"
                                             VerticalOptions="Center" />
 
                                         <Image
                                             Grid.Row="4"
                                             Grid.Column="1"
-                                            Margin="3.5,1.5,0,0"
+                                            Margin="0,3,0,0"
                                             Aspect="AspectFill"
                                             HorizontalOptions="Center"
-                                            Source="https://cdn-icons-png.flaticon.com/64/2810/2810390.png"
+                                            Source="https://cdn-icons-png.flaticon.com/32/2810/2810390.png"
                                             VerticalOptions="Center" />
 
                                         <!--  Column 3  -->
                                         <Label
                                             Grid.Column="2"
-                                            Margin="5,0"
+                                            Margin="5,10"
                                             FontAttributes="Bold"
-                                            FontSize="16"
+                                            FontSize="12"
                                             HorizontalOptions="Start"
                                             HorizontalTextAlignment="Start"
                                             Text="{Binding Photographer}"
                                             TextColor="Black"
-                                            VerticalOptions="Center"
-                                            VerticalTextAlignment="Center" />
+                                            VerticalOptions="Start"
+                                            VerticalTextAlignment="Start" />
 
                                         <Label
                                             Grid.Row="1"
                                             Grid.Column="2"
                                             Margin="5,0"
-                                            FontSize="16"
+                                            Padding="0"
+                                            FontSize="12"
                                             HorizontalOptions="Start"
                                             HorizontalTextAlignment="Start"
                                             Text="{Binding Alt}"
@@ -246,7 +248,7 @@
                                             Command="{Binding BindingContext.AddToFavouritesCommand, Source={x:Reference Name=dataListView}}"
                                             CommandParameter="{Binding .}"
                                             CornerRadius="25"
-                                            FontSize="16"
+                                            FontSize="12"
                                             HasShadow="False"
                                             HorizontalOptions="StartAndExpand"
                                             HorizontalTextAlignment="Start"
@@ -263,7 +265,7 @@
                                             Command="{Binding BindingContext.AddToBlacklistCommand, Source={x:Reference Name=dataListView}}"
                                             CommandParameter="{Binding .}"
                                             CornerRadius="25"
-                                            FontSize="16"
+                                            FontSize="12"
                                             HasShadow="False"
                                             HorizontalOptions="StartAndExpand"
                                             HorizontalTextAlignment="Start"
@@ -280,11 +282,11 @@
                                             Command="{Binding BindingContext.DownloadCommand, Source={x:Reference Name=dataListView}}"
                                             CommandParameter="{Binding .}"
                                             CornerRadius="25"
-                                            FontSize="16"
+                                            FontSize="12"
                                             HasShadow="False"
                                             HorizontalOptions="StartAndExpand"
                                             HorizontalTextAlignment="Start"
-                                            Text="Download Photo"
+                                            Text="Download"
                                             TextColor="Black"
                                             VerticalOptions="CenterAndExpand"
                                             VerticalTextAlignment="Center" />
